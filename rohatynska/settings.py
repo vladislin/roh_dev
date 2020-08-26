@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'ldfy=yo0o$p_fcx!!%#*__qpm2*tke
 
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['floating-savannah-86460.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['rohatynska-deploy.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
