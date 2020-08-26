@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Рогатинська</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static "main/assets/img/MU_LOGO.png" %}" rel="icon">
+  <link href="{% static "main/assets/img/MU_LOGO.png" %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static "main/assets/vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <link href="{% static "main/assets/vendor/icofont/icofont.min.css" %}" rel="stylesheet">
+  <link href="{% static "main/assets/vendor/boxicons/css/boxicons.min.css" %}" rel="stylesheet">
+  <link href="{% static "main/assets/vendor/venobox/venobox.css" %}" rel="stylesheet">
+  <link href="{% static "main/assets/vendor/owl.carousel/assets/owl.carousel.min.css" %}" rel="stylesheet">
+  <link href="{% static "main/assets/vendor/aos/aos.css" %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static "main/assets/css/style.css" %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <div class="logo mr-auto">
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <a href="{% url 'home' %}"><img src="{% static "main/assets/img/MU_LOGO.png" %}" alt="" class="img-fluid" style="box-shadow: #ffffff"></a>
+    </div>
+
+    <nav class="nav-menu d-none d-lg-block">
+      <ul>
+        <li><a href="{% url 'home' %}">Головна</a></li>
+        <li><a href="{% url 'news' %}">Новини</a></li>
+        <li><a href="{% url 'portfolio' %}">Продукція</a></li>
+        <li><a href="{% url 'dilers' %}">Для дилерів</a></li>
+
+      </ul>
+    </nav>
+
+  </div>
+</header><!-- End Header -->
+
+
+  <main id="main">
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-in" data-aos-delay="100">
+          <h2>Новини</h2>
+        </div>
+
+        <div class="row">
+            {% for post in news %}
+
+          <div class="col-lg-4 col-md-6 cart">
+            <div class="member" data-aos="fade-up">
+              <div class="pic"><img src="{{ post.images.first }}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{ post.title}}</h4>
+                <span>{{ post.description}}</span>
+                <div class="social">
+                  <a href="{% url 'news-detail' post.id  %}" class="about-btn">Детальніше <i class="bx bx-chevron-right"></i></a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+
+
+        </div>
+<!--          <div class="section-title" data-aos="fade-in" data-aos-delay="100">-->
+<!--              <div class="page">-->
+<!--                  <nav class="pagination">-->
+<!--                      <ol class="r-list pagination__list">-->
+<!--                          {% if is_paginated %}-->
+<!--                              {% for num in paginator.page_range %}-->
+<!--                                  {% if num == page_obj.number %}-->
+<!--                                      <li class="pagination__group"><a class="pagination__point" aria-current="page">{{ num }}</a></li>-->
+<!--                                  {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}-->
+<!--                                      <li class="pagination__group"><a href="?page={{ num }}" class="r-link pagination__point">{{ num }}</a></li>-->
+<!--                                  {% endif %}-->
+<!--                              {% endfor %}-->
+<!--                          {% endif %}-->
+<!--                      </ol>-->
+<!--                  </nav>-->
+<!--              </div>-->
+<!--          </div>-->
+
+      </div>
+    </section><!-- End Team Section -->
+
+
+
+    <!--<section class="inner-page">
+      <div class="container">
+        <p>
+          Example inner page template
+        </p>
+      </div>
+    </section>-->
+
+  </main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-info" data-aos="fade-up" data-aos-delay="50">
+            <h3>Рогатинська</h3>
+            <!--              <p class="pb-3"><em>Qui repudiandae et eum dolores alias sed ea. Qui suscipit veniam excepturi quod.</em></p>-->
+            <p>
+              Україна, Івано-Франківська обл., <br>
+              Рогатинський район,
+
+              с. Лучинці<br><br>
+              <strong>Телефони:</strong> (03435) 34-555  |  (03435) 34-545<br>
+              <strong>Email:</strong> on_ig@i.ua<br>
+            </p>
+            <div class="social-links mt-3">
+{#              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>#}
+              <a href="https://www.facebook.com/ТМ-Рогатинська-103493604569038" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://instagram.com/voda_rohatynska?igshid=8nritntkyv23" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+              {% comment %}<a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>{% endcomment %}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 footer-links" data-aos="fade-up" data-aos-delay="150">
+          <h4>Корисні посилання</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}#news">Новини</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}#portfolio">Продукція</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}#about">Про нас</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}#cta">Для дилерів</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}#contact">Контакти</a></li>
+          </ul>
+        </div>
+
+          <div class="col-lg-5 col-md-6 footer-links" data-aos="fade-up" data-aos-delay="150" >
+                <img src="{% static "main/assets/img/MU_LOGO.png" %}" alt="" class="img-fluid" style="box-shadow: #ffffff">
+            </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+    </div>
+    <div class="credits">
+      Designed by <a href="">STN</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static "main/assets/vendor/jquery/jquery.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/jquery.easing/jquery.easing.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/php-email-form/validate.js" %}"></script>
+  <script src="{% static "main/assets/vendor/waypoints/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/counterup/counterup.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/isotope-layout/isotope.pkgd.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/venobox/venobox.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/owl.carousel/owl.carousel.min.js" %}"></script>
+  <script src="{% static "main/assets/vendor/aos/aos.js" %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static "main/assets/js/main.js" %}"></script>
+
+</body>
+
+</html>
