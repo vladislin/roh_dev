@@ -121,8 +121,8 @@ USE_TZ = True
 
 # Send Email
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vlad.slinchuk@gmail.com'
-EMAIL_HOST_PASSWORD = 'plagiatvladislin'
+EMAIL_HOST_USER = 'rohatynska.sender@gmail.com'
+EMAIL_HOST_PASSWORD = 'plagiatrohatynska'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
