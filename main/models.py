@@ -69,7 +69,7 @@ class LoadImage(models.Model):
     img = models.ImageField(upload_to='home_pictures', verbose_name='Фото')
 
     def __str__(self):
-        return self.title
+        return self.img
 
     class Meta:
         verbose_name_plural = 'Додайте нове фото для головної сторінки'

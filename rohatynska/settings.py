@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -134,8 +135,19 @@ EMAIL_USE_TLS = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+AWS_ACCESS_KEY_ID = 'AKIASIB3UDMD7EECGA62'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'roh-assets'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
 MEDIA_URL = '/pictures/'
+
+DEFAULT_FILE_STORAGE = 'rohatynska.storage_backends.MediaStorage'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
