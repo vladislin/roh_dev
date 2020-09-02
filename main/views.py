@@ -42,7 +42,7 @@ def contact_us(request):
             message = 'Ви отримали нове повідомлення від {} ({}).\n' \
                       'Номер телефону користувача: {} \n\n'.format(name['name'], sender['sender'], phone['phone'])
             message += contact_form.cleaned_data['message']
-            recipients = ['on_ig@i.ua']
+            recipients = ['on_ig@i.ua', 'rohatynska.sender@gmail.com']
             send_mail(subject, message, 'rohatynska.sender@gmail.com', recipients)
 
     else:
