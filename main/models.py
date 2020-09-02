@@ -30,14 +30,16 @@ class Product(models.Model):
     mi = 'mi'
     roksolana = 'roksolana'
     djerelna = 'djerelna'
-    aqua = 'aqua'
+    aqua_fruit = 'aqua-fruit'
+    aqua_daily = 'aqua-daily'
     likuvalna = 'likuvalna'
 
     BRAND_CHOICES = (
         (mi, 'МИ'),
         (roksolana, 'Роксолана'),
         (djerelna, 'Джерельна'),
-        (aqua, 'Аква'),
+        (aqua_daily, 'Аква Daily'),
+        (aqua_fruit, 'Аква Fruit'),
         (likuvalna, 'Лікувальна'),
     )
 
