@@ -103,6 +103,7 @@ celerybeat.pid
 
 # Environments
 .env
+.idea/
 .venv
 env/
 venv/
@@ -136,5 +137,3 @@ dmypy.json
 *.sqlite3
 
 pictures
-
-.idea
