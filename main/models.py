@@ -66,25 +66,17 @@ class ProductImages(models.Model):
         verbose_name_plural = 'Фото продукції'
 
 
-class LoadImage(models.Model):
-    title = models.CharField(max_length=30, verbose_name='Назва для фото')
-    img = models.ImageField(upload_to='home_pictures', verbose_name='Фото')
+class MainImage(models.Model):
+    title = models.CharField(max_length=128,null=True, blank=True, default=None, verbose_name='Назва для фото')
+    image = models.ImageField(upload_to='home_pictures', verbose_name='Зображення', null=True,  blank=True, default=False)
+    status = models.BooleanField(null=True, blank=True, default=False, verbose_name='Актвине фото')
 
     def __str__(self):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Додайте нове фото для головної сторінки'
-
-
-class MainImage(models.Model):
-    image = models.ForeignKey(LoadImage, related_name='pict', on_delete=models.CASCADE, verbose_name='Виберіть фото')
-
-    def __str__(self):
-        return self.image.title
-
-    class Meta:
-        verbose_name_plural = 'Виберіть фото на головній сторінці(не додавайте нове фото, змініть уже створене)'
+        verbose_name = 'Головне фото'
+        verbose_name_plural = 'Головні фото'
 
 
 

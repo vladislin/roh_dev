@@ -72,16 +72,18 @@
 
 <!-- ======= Hero Section ======= -->
 {% for obj in img %}
-<style type="text/css">
-  #hero {
-    width: 100%;
-    height: 100vh;
-    background: url("{{ obj.image.img.url }}") top center;
-    background-size: cover;
-    position: relative;
-    margin-bottom: -90px;
-  }
-</style>
+  {% if obj.status %}
+    <style type="text/css">
+      #hero {
+        width: 100%;
+        height: 100vh;
+        background: url("{{ obj.image.url }}") top center;
+        background-size: cover;
+        position: relative;
+        margin-bottom: -90px;
+      }
+    </style>
+  {% endif %}
 {% endfor %}
 
 <section id="hero">
