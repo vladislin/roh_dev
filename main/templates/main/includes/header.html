@@ -1,0 +1,28 @@
+{% load static %}
+
+<!-- ======= Header ======= -->
+
+<header id="header" class="{{ header_class|default:"fixed-top header-transparent" }}">
+    <div class="container d-flex align-items-center">
+
+        <div class="logo{{ h }} mr-auto">
+            {#      <h1 class="text-light"><a href="{% url 'home' %}"><span>Рогатинська</span></a></h1>#}
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <a href="{% url 'home' %}"><img src="{% static "main/assets/img/MU_LOGO.png" %}" alt="" class="img-fluid"
+                                            style="box-shadow: #ffffff"></a>
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li><a href="{% url 'home' %}#news">Новини</a></li>
+                <li><a href="{% url 'home' %}#services">Продукція</a></li>
+                <li><a href="{% url 'home' %}#about">Про нас</a></li>
+                <li><a href="{% url 'home' %}#cta">Для дилерів</a></li>
+                <li><a href="{% url 'home' %}#contact">Контакти</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header>
+
+<!-- End Header -->

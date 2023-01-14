@@ -15,7 +15,7 @@ from .models import News, Product, MainImage
 class HomeView(TemplateView):
     """ Main page view """
 
-    template_name = 'main/home.html'
+    template_name = 'main/pages/home.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -28,7 +28,7 @@ class NewsView(ListView):
     """All News page view"""
 
     model = News
-    template_name = 'main/inner-page.html'
+    template_name = 'main/pages/news.html'
     context_object_name = 'news'
     ordering = ['-date']
 
@@ -36,12 +36,12 @@ class NewsView(ListView):
 class NewsDetailView(DetailView):
     """News detail page view"""
     model = News
-    template_name = 'main/portfolio-details.html'
+    template_name = 'main/pages/news-details.html'
 
 
-class PortfolioView(TemplateView):
+class ProductionView(TemplateView):
     """ Portfolio page view """
-    template_name = 'main/portfolio.html'
+    template_name = 'main/pages/production.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,7 +52,7 @@ class ForDilersView(View):
     """ For Dilers page view """
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'main/diler.html')
+        return render(request, 'main/pages/diler.html')
 
     def post(self, request, *args, **kwargs):
         if request.method == 'POST':

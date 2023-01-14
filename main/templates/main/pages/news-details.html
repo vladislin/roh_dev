@@ -1,0 +1,47 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    {% include 'main/includes/header.html' with header_class="fixed-top" h="" %}
+
+    <main id="main">
+
+        <!-- ======= News Details Section ======= -->
+        <section class="portfolio-details">
+            <div class="container">
+                <div class="row port">
+                    <div class="portfolio-details-container col-lg-6">
+
+                        <div class="owl-carousel portfolio-details-carousel">
+                            {% for image in object.images.all %}
+                                <img src="{{ image }}" class="img-fluid" alt="">
+                            {% endfor %}
+                        </div>
+
+                        <!--<div class="portfolio-info">
+                          <h3>Project information</h3>
+                          <ul>
+                            <li><strong>Category</strong>: Web design</li>
+                            <li><strong>Client</strong>: ASU Company</li>
+                            <li><strong>Project date</strong>: 01 March, 2020</li>
+                            <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                          </ul>
+                        </div>-->
+
+                    </div>
+
+                    <div class="portfolio-description col-lg-6">
+                        <h2>{{ object.title }}</h2>
+                        <p>{{ object.text }}</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End News Details Section -->
+
+    </main>
+    <!-- End #main -->
+
+    {% include 'main/includes/footer.html' %}
+
+{% endblock %}
