@@ -1,20 +1,32 @@
 from django.core.mail import send_mail
+from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import News, Product, MainImage
+from django.views.generic import (
+    ListView,
+    DetailView,
+    TemplateView,
+    View
+)
+
 from .forms import ContactUsForm
+from .models import News, Product, MainImage
 
 
-def home(request):
-    return render(request, 'main/home.html', {'news': News.objects.order_by("-date")[:3],
-                                              'img': MainImage.objects.all()})
+class HomeView(TemplateView):
+    """ Main page view """
+
+    template_name = 'main/home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['news'] = News.objects.order_by("-date")[:3]
+        context['img'] = MainImage.objects.filter(status=True)
+        return context
 
 
-def dilers(request):
-    return render(request, 'main/diler.html')
+class NewsView(ListView):
+    """All News page view"""
 
-
-class ShowNewsView(ListView):
     model = News
     template_name = 'main/inner-page.html'
     context_object_name = 'news'
@@ -22,32 +34,40 @@ class ShowNewsView(ListView):
 
 
 class NewsDetailView(DetailView):
+    """News detail page view"""
     model = News
     template_name = 'main/portfolio-details.html'
 
 
-def portfolio_view(request):
-    return render(request, 'main/portfolio.html', {'product': Product.objects.all()})
+class PortfolioView(TemplateView):
+    """ Portfolio page view """
+    template_name = 'main/portfolio.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.all()
 
 
-def contact_us(request):
-    if request.method == 'POST':
-        contact_form = ContactUsForm(request.POST)
+class ForDilersView(View):
+    """ For Dilers page view """
 
-        if contact_form.is_valid():
-            name = contact_form.cleaned_data
-            sender = contact_form.cleaned_data
-            phone = contact_form.cleaned_data
-            subject = contact_form.cleaned_data['subject']
-            message = 'Ви отримали нове повідомлення від {} ({}).\n' \
-                      'Номер телефону користувача: {} \n\n'.format(name['name'], sender['sender'], phone['phone'])
-            message += contact_form.cleaned_data['message']
-            recipients = ['on_ig@i.ua', 'rohatynska.sender@gmail.com']
-            send_mail(subject, message, 'rohatynska.sender@gmail.com', recipients)
+    def get(self, request, *args, **kwargs):
+        return render(request, 'main/diler.html')
 
-    else:
-        contact_form = ContactUsForm()
+    def post(self, request, *args, **kwargs):
+        if request.method == 'POST':
+            form = ContactUsForm(request.POST)
+            if form.is_valid():
+                name = form.cleaned_data['name']
+                sender = form.cleaned_data['sender']
+                phone = form.cleaned_data['phone']
+                subject = form.cleaned_data['subject']
+                message = f'Ви отримали нове повідомлення від {name} ({sender}).\n' \
+                          f'Номер телефону користувача: {phone} \n\n'
+                message += form.cleaned_data['message']
+                recipients = ['on_ig@i.ua', 'config.sender@gmail.com']
+                send_mail(subject, message, 'config.sender@gmail.com', recipients)
 
-    return render(request, 'main/success.html', {
-        'form': contact_form,
-    })
+                return HttpResponse('Дякуємо. З вами скоро зв\'яжуться!')
+            else:
+                return HttpResponse('Виникла помилка, спробуйте ще раз!')
