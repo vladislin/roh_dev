@@ -137,4 +137,4 @@ dmypy.json
 #Database
 *.sqlite3
 
-pictures
+/pictures/
